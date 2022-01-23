@@ -23,7 +23,8 @@ GLuint shader_program = 0; // shader program to set render pipeline
 GLuint vao = 0; // Vertext Array Object to set input data
 GLint model_location, view_location, proj_location, normal_tw_location, material_ambient_location, material_diffuse_location, 
 material_specular_location, material_shininess_location, view_position_location, light_ambient_location, 
-light_diffuse_location, light_specular_location, light_position_location; // Uniforms for transformation matrices
+light_diffuse_location, light_specular_location, light_position_location, light_position_location2,
+light_ambient_location2, light_diffuse_location2, light_specular_location2; // Uniforms for transformation matrices
 
 // Shader names
 const char *vertexFileName = "spinningcube_withlight_vs.glsl";
@@ -32,11 +33,14 @@ const char *fragmentFileName = "spinningcube_withlight_fs.glsl";
 // Camera
 glm::vec3 camera_pos(0.0f, 0.0f, 3.0f);
 
-// Lighting
+// Lighting 1
 glm::vec3 light_pos(1.2f, 1.0f, 2.0f);
 glm::vec3 light_ambient(0.2f, 0.2f, 0.2f);
 glm::vec3 light_diffuse(0.5f, 0.5f, 0.5f);
 glm::vec3 light_specular(1.0f, 1.0f, 1.0f);
+
+// Lighting 2
+glm::vec3 light_pos_2(-2.f, -1.0f, -2.0f);
 
 // Material
 glm::vec3 material_ambient(1.0f, 0.5f, 0.31f);
@@ -243,6 +247,10 @@ int main() {
   light_diffuse_location = glGetUniformLocation(shader_program, "light.diffuse");
   light_specular_location = glGetUniformLocation(shader_program, "light.specular");
   light_position_location =glGetUniformLocation(shader_program, "light.position");
+  light_position_location2 =glGetUniformLocation(shader_program, "light_2.position");
+  light_ambient_location2 = glGetUniformLocation(shader_program, "light_2.ambient");
+  light_diffuse_location2 = glGetUniformLocation(shader_program, "light_2.diffuse");
+  light_specular_location2 = glGetUniformLocation(shader_program, "light_2.specular");
   
 
 // Render loop
@@ -316,10 +324,17 @@ void render(double currentTime) {
   glUniform3f(material_specular_location, material_specular.x, material_specular.y, material_specular.z);
   glUniform1f(material_shininess_location, material_shininess);
   glUniform3f(view_position_location, camera_pos.x, camera_pos.y, camera_pos.z);
+  //light 1
   glUniform3f(light_ambient_location, light_ambient.x, light_ambient.y, light_ambient.z);
   glUniform3f(light_diffuse_location, light_diffuse.x, light_diffuse.y, light_diffuse.z);
   glUniform3f(light_specular_location, light_specular.x, light_specular.y, light_specular.z);
   glUniform3f(light_position_location, light_pos.x, light_pos.y, light_pos.z);
+  //light 2
+  //glUniform3f(light_ambient_location2, light_ambient.x, light_ambient.y, light_ambient.z);
+  //glUniform3f(light_diffuse_location2, light_diffuse.x, light_diffuse.y, light_diffuse.z);
+  //glUniform3f(light_specular_location2, light_specular.x, light_specular.y, light_specular.z);
+  //glUniform3f(light_position_location2, light_pos_2.x, light_pos_2.y, light_pos_2.z);
+
 
   glDrawArrays(GL_TRIANGLES, 0, 36);
 

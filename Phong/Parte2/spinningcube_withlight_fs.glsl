@@ -49,7 +49,7 @@
 
     //Light2
     // Ambient
-    /*
+    
     vec3 ambient2 = light.ambient * material.ambient;
     vec3 light_dir2 = normalize(light_2.position - frag_3Dpos);
 
@@ -68,6 +68,6 @@
     vec3 result2 = ambient2 + diffuse2 + specular2;
 
     vec3 result = result1 + result2;
-    */
-    frag_col = vec4(result1, 1.0);
+    
+    frag_col = vec4(result, 1.0);
     }

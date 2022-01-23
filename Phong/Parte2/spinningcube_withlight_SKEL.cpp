@@ -40,7 +40,7 @@ glm::vec3 light_diffuse(0.5f, 0.5f, 0.5f);
 glm::vec3 light_specular(1.0f, 1.0f, 1.0f);
 
 // Lighting 2
-glm::vec3 light_pos_2(-2.f, -1.0f, -2.0f);
+glm::vec3 light_pos_2(-1.2f, 1.0f, -2.0f);
 
 // Material
 glm::vec3 material_ambient(1.0f, 0.5f, 0.31f);
@@ -330,10 +330,10 @@ void render(double currentTime) {
   glUniform3f(light_specular_location, light_specular.x, light_specular.y, light_specular.z);
   glUniform3f(light_position_location, light_pos.x, light_pos.y, light_pos.z);
   //light 2
-  //glUniform3f(light_ambient_location2, light_ambient.x, light_ambient.y, light_ambient.z);
-  //glUniform3f(light_diffuse_location2, light_diffuse.x, light_diffuse.y, light_diffuse.z);
-  //glUniform3f(light_specular_location2, light_specular.x, light_specular.y, light_specular.z);
-  //glUniform3f(light_position_location2, light_pos_2.x, light_pos_2.y, light_pos_2.z);
+  glUniform3f(light_ambient_location2, light_ambient.x, light_ambient.y, light_ambient.z);
+  glUniform3f(light_diffuse_location2, light_diffuse.x, light_diffuse.y, light_diffuse.z);
+  glUniform3f(light_specular_location2, light_specular.x, light_specular.y, light_specular.z);
+  glUniform3f(light_position_location2, light_pos_2.x, light_pos_2.y, light_pos_2.z);
 
 
   glDrawArrays(GL_TRIANGLES, 0, 36);
